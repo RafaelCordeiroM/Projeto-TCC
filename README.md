@@ -1,99 +1,125 @@
+# PROJETO DE TCC: VISUALIZADOR DE NOTAS FISCAIS XML  
 
-# Visualizador de Notas Fiscais XML
+## 1. INTRODUÇÃO  
+No contexto empresarial, a gestão de notas fiscais eletrônicas (NFe e NFCe) é uma atividade essencial para comerciantes e contadores, garantindo a regularidade fiscal e evitando sanções legais. Contudo, o grande volume de notas emitidas diariamente, bem como a complexidade dos arquivos XML, tornam o processo de organização, validação e consulta desses documentos desafiador e sujeito a erros.  
 
-## Resumo do Projeto
-Esta aplicação, desenvolvida com **Flutter**, oferece uma plataforma para visualização e gestão de notas fiscais eletrônicas (NFe e NFCe) por meio de arquivos XML. A aplicação é multiplataforma, disponível para dispositivos móveis e desktops, com banco de dados local para armazenar e processar os dados das notas.
-
-## Objetivo da Aplicação
-A gestão de notas fiscais eletrônicas é essencial para comerciantes e contadores, garantindo regularidade fiscal e evitando multas. Devido ao volume e à complexidade dos arquivos XML, o processo de organização manual pode ser demorado e sujeito a erros.
-
-A aplicação foi desenvolvida para facilitar essa gestão, oferecendo uma ferramenta prática e acessível para visualizar, organizar e validar notas fiscais de forma rápida e segura. As principais funcionalidades incluem:
-- Importação de XMLs
-- Validação de status das notas
-- Identificação de lacunas na sequência numérica
-- Pesquisa e filtro de notas fiscais
-
-A ferramenta visa a otimizar o trabalho de comerciantes e contadores, reduzindo o risco de multas e garantindo conformidade com as regulamentações fiscais, além de proporcionar uma visão geral das operações financeiras.
+Diante dessa realidade, este projeto apresenta o **Visualizador de Notas Fiscais XML**, uma aplicação multiplataforma desenvolvida com **Flutter**, que visa otimizar a gestão de notas fiscais, utilizando armazenamento local e em nuvem, filtros avançados e autenticação segura.  
 
 ---
 
-## Arquitetura do Sistema
+## 2. OBJETIVOS  
 
-### Frontend
-- **Flutter**: Framework para construção de interfaces e experiência multiplataforma.
-- **Dart**: Linguagem de programação para lógica de negócio.
-- **GetX**: Biblioteca para gerenciamento de estado, navegação e injeção de dependência, melhorando a estrutura e o desempenho da aplicação.
+### 2.1 Objetivo Geral  
+Desenvolver uma aplicação multiplataforma para visualização, organização e validação de notas fiscais eletrônicas, proporcionando praticidade e eficiência no cumprimento de obrigações fiscais.  
 
-### Backend Local
-- **Banco de Dados Local**: Armazena e organiza as notas fiscais, oferecendo disponibilidade offline e alto desempenho nas buscas e filtragens.
-
----
-
-## Funcionalidades Principais
-
-### Importação e Leitura de XMLs
-- Permite a importação de arquivos XML de NFe e NFCe.
-- Processamento dos arquivos para extrair dados como número, valor, data e status da nota.
-
-### Verificação de Números Faltantes
-- Análise da sequência numérica das notas fiscais.
-- Identificação e notificação de lacunas na sequência para correção de possíveis erros.
-
-### Validação de Status das Notas
-- Verificação do status das notas (autorizada, cancelada, inutilizada, incorreta).
-- Relatório detalhado para gestão precisa.
-
-### Cálculo do Valor Total
-- Calcula o valor total das notas fiscais importadas.
-- Exibição prática do valor total na interface, facilitando a contabilidade.
-
-### Campo de Pesquisa e Filtros Avançados
-- Pesquisa por intervalo de datas e palavras-chave.
-- Filtros disponíveis: Autorizadas, Canceladas, Inutilizadas, Incorretas, NF-e (Modelo 55), NFC-e (Modelo 65).
+### 2.2 Objetivos Específicos  
+- Permitir a importação, armazenamento e leitura de arquivos XML de NFe e NFCe.  
+- Implementar autenticação via Google para maior segurança e personalização.  
+- Proporcionar armazenamento em nuvem por meio do Firebase, garantindo acessibilidade aos dados.  
+- Implementar responsividade na interface para suportar diferentes dispositivos.  
+- Oferecer funcionalidades avançadas de busca e filtragem diretamente na tabela de dados.  
 
 ---
 
-## Interface do Usuário
+## 3. JUSTIFICATIVA  
+A gestão fiscal é uma obrigação indispensável para empresas, e erros no controle de notas fiscais podem acarretar multas, auditorias fiscais e impactos financeiros negativos. Atualmente, muitos comerciantes ainda realizam a gestão de notas de forma manual ou com ferramentas genéricas, que não atendem às especificidades do processo.  
 
-### Tela Inicial
-- **Botão “Importar XMLs”**: Facilita o upload dos arquivos XML.
-- **Resumo das Notas Fiscais**: Exibe um resumo dos arquivos importados e o valor total calculado.
-
-### Aba de Validação de Status
-- **Relatório de Status**: Status de cada nota fiscal categorizado.
-- **Notificação de Números Faltantes**: Alertas para notas faltantes na sequência.
-
-### Barra Lateral
-- **Campo de Pesquisa**: Pesquisa rápida por intervalo de datas ou texto.
-- **Filtros**: Permite selecionar filtros específicos para visualizar categorias de notas fiscais.
+O **Visualizador de Notas Fiscais XML** atende a essa lacuna ao oferecer uma solução tecnológica acessível, segura e eficiente, que facilita tanto o trabalho do comerciante quanto do contador, reduzindo o risco de erros e promovendo a conformidade fiscal.  
 
 ---
 
-## Fluxo de Operação
+## 4. METODOLOGIA  
 
-1. **Importação de Arquivos XML**: Clique em "Importar XMLs" e selecione arquivos XML de NFe ou NFCe.
-2. **Verificação Automática de Números Faltantes**: Análise automática da sequência numérica e notificação de números ausentes.
-3. **Validação de Status**: Classificação das notas fiscais em correta, inutilizada, cancelada ou autorizada.
-4. **Cálculo do Valor Total**: Exibição do valor total das notas fiscais na interface.
-5. **Pesquisa e Filtros**: Pesquisa por datas ou palavras-chave e visualização por filtros específicos.
+### 4.1 Ferramentas Utilizadas  
+- **Flutter**: Framework para desenvolvimento de aplicações multiplataforma.  
+- **Dart**: Linguagem de programação utilizada para lógica de negócios e manipulação de dados.  
+- **GetX**: Biblioteca para gerenciamento de estado, navegação e injeção de dependência.  
+- **Firebase**: Serviço para armazenamento em nuvem, autenticação e sincronização de dados.  
 
----
-
-## Tecnologias Utilizadas
-
-- **Flutter**: Framework de desenvolvimento de interfaces e experiência de usuário.
-- **Dart**: Linguagem para lógica de negócios e manipulação de dados.
-- **GetX**: Biblioteca para gerenciamento de estado, navegação e injeção de dependência.
-
----
-
-## Possíveis Extensões
-
-- **Integração com API de Notas Fiscais**: Possível expansão para importação direta de serviços de terceiros.
-- **Exportação de Relatórios**: Exportação dos relatórios de validação e resumo em formatos como PDF ou CSV.
-- **Sincronização em Nuvem**: Sincronização para armazenamento e consulta de dados na nuvem, permitindo acessibilidade em múltiplos dispositivos.
+### 4.2 Desenvolvimento  
+O projeto seguiu uma abordagem incremental, com o desenvolvimento de funcionalidades em etapas, conforme descrito abaixo:  
+1. Implementação básica de importação e leitura de arquivos XML.  
+2. Adição de verificação automática de lacunas na sequência numérica das notas.  
+3. Desenvolvimento de funcionalidades para validação do status das notas fiscais.  
+4. Implementação do cálculo automático do valor total das notas.  
+5. Inclusão de login via Google e integração com Firebase para armazenamento em nuvem.  
+6. Adaptação da interface para responsividade e implementação de filtros avançados na tabela.  
 
 ---
 
-## Conclusão
-Este projeto visa oferecer uma solução completa para a gestão de notas fiscais eletrônicas, otimizando processos contábeis e de auditoria, e proporcionando mais confiabilidade e tranquilidade no cumprimento de obrigações fiscais.
+## 5. ARQUITETURA DO SISTEMA  
+
+### 5.1 Frontend  
+- **Flutter**: Responsável por fornecer uma interface de usuário consistente e responsiva.  
+- **Dart**: Linguagem de programação para estruturação da lógica de negócio e manipulação de dados.  
+- **GetX**: Facilita o gerenciamento de estado e navegação, promovendo uma experiência otimizada.  
+
+### 5.2 Backend e Armazenamento  
+- **Firebase**: Utilizado para armazenamento de dados na nuvem, autenticação e sincronização.  
+- **Banco de Dados Local**: Garante suporte offline, permitindo que a aplicação funcione mesmo sem conexão.  
+
+---
+
+## 6. FUNCIONALIDADES  
+
+### 6.1 Importação e Armazenamento de XMLs  
+- Suporte à importação de arquivos XML de NFe e NFCe.  
+- Armazenamento local e na nuvem para maior segurança e disponibilidade.  
+
+### 6.2 Login via Google  
+- Autenticação segura e personalizada.  
+- Dados do usuário armazenados separadamente para garantir privacidade.  
+
+### 6.3 Verificação de Números Faltantes  
+- Identificação automática de lacunas na sequência numérica das notas fiscais.  
+- Notificação visual para facilitar a correção de inconsistências.  
+
+### 6.4 Validação de Status das Notas  
+- Classificação das notas fiscais como autorizadas, canceladas, inutilizadas ou incorretas.  
+- Relatórios detalhados para auditoria fiscal.  
+
+### 6.5 Cálculo do Valor Total  
+- Cálculo automático do valor total das notas fiscais importadas.  
+- Exibição clara do total na interface principal.  
+
+### 6.6 Pesquisa e Filtros na Tabela  
+- Busca avançada por intervalo de datas e palavras-chave.  
+- Filtros para categorias específicas diretamente na tabela.  
+
+---
+
+## 7. RESULTADOS  
+O **Visualizador de Notas Fiscais XML** foi desenvolvido com sucesso, atendendo aos objetivos propostos. Os principais resultados obtidos incluem:  
+- Melhoria na eficiência da gestão de notas fiscais.  
+- Redução de erros humanos na organização e validação de documentos fiscais.  
+- Maior segurança e acessibilidade dos dados por meio do armazenamento em nuvem.  
+- Facilidade de uso com autenticação segura e interface responsiva.  
+
+---
+
+## 8 COMO TESTAR
+- Acesse a Aplicação Web:
+Abra o link: (https://rafaelcordeirom.github.io/TCC-website-Final) no navegador de sua preferência.
+
+- Importe os Arquivos XML:
+Faça o download dos arquivos de exemplo disponíveis no repositório do projeto no GitHub. Em seguida, importe-os na aplicação por meio do botão "Arquivo".
+
+---
+
+## 9. CONCLUSÃO  
+Este projeto apresentou uma solução tecnológica prática e acessível para a gestão de notas fiscais eletrônicas. Ao combinar armazenamento local e na nuvem, autenticação segura e funcionalidades avançadas de busca e filtragem, a aplicação atende a necessidades reais do mercado.  
+
+O **Visualizador de Notas Fiscais XML** não apenas facilita o trabalho do comerciante e contador, mas também promove a conformidade fiscal, reduzindo o risco de penalidades e proporcionando maior tranquilidade no cumprimento das obrigações legais.  
+
+---
+
+## 10. Links  
+- Video inicial (antes das melhorias): ([https://www.youtube.com/watch?v=LfWOiJWcjzg](https://www.youtube.com/watch?v=LfWOiJWcjzg))
+- Video final (depois das melhorias): ([https://www.youtube.com/watch?v=IPBQdnU2S8U](https://www.youtube.com/watch?v=IPBQdnU2S8U))
+- Site em funcionamento:  ([https://rafaelcordeirom.github.io/TCC-website-Final](https://rafaelcordeirom.github.io/TCC-website-Final))
+---
+
+## 11. REFERÊNCIAS  
+- Documentação oficial do Flutter e Dart ([https://flutter.dev/](https://flutter.dev/)).  
+- Documentação oficial do Firebase ([https://firebase.google.com/](https://firebase.google.com/)).  
+- Normas da Receita Federal para emissão de notas fiscais eletrônicas ([https://www.gov.br/receitafederal/](https://www.gov.br/receitafederal/)).  
