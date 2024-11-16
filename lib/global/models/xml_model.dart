@@ -2,6 +2,8 @@ import 'package:fiscal_validator/util/convertes.dart';
 import 'package:xml/xml.dart';
 
 class XMLModel {
+  String nomeEmpresa;
+  String cnpj;
   String status;
   String? chave;
   String numero;
@@ -16,6 +18,8 @@ class XMLModel {
   bool autorizada;
 
   XMLModel({
+    required this.nomeEmpresa,
+    required this.cnpj,
     required this.status,
     required this.chave,
     required this.numero,
@@ -71,6 +75,8 @@ class XMLModel {
       String? nInFn = inut ? '${doc.findAllElements('nNFFin').first.innerText}' : null;
 
       return XMLModel(
+        nomeEmpresa: doc.findAllElements('emit').first.findAllElements('xNome').first.innerText,
+        cnpj: doc.findAllElements('emit').first.findAllElements('CNPJ').first.innerText,
         status: stat,
         chave: chNFe,
         numero: nNF,

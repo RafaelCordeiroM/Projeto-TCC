@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:fiscal_validator/content/home/services/home_services.dart';
 import 'package:fiscal_validator/global/models/xml_model.dart';
 import 'package:fiscal_validator/util/convertes.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ import 'package:intl/intl.dart';
 import 'package:xml/xml.dart';
 
 class HomeController extends GetxController {
+  final HomeServices _homeServices = HomeServices();
+
   //LISTAS
   final Rx<List<XMLModel>> _allXmlList = Rx<List<XMLModel>>([]);
   Rx<List<XMLModel>> currentXmlList = Rx<List<XMLModel>>([]);
@@ -32,6 +35,7 @@ class HomeController extends GetxController {
 
   //SCREEN STATES
   RxBool isLoading = RxBool(false);
+  RxBool isSentToCloudLoading = RxBool(false);
 
   //RESET
   void reset() {
@@ -65,24 +69,27 @@ class HomeController extends GetxController {
       _allXmlList.value.clear();
       currentXmlList.value.clear();
 
-      await Future.forEach(
-        result.files,
-        (PlatformFile file) async {
-          if (file.extension == 'xml') {
-            if (file.path != null) {
-              String fileContent = await File(file.path!).readAsString();
-              final doc = XmlDocument.parse(fileContent);
+      await Future.forEach(result.files, (PlatformFile file) async {
+        if (file.extension == 'xml') {
+          String fileContent;
 
-              XMLModel xml = XMLModel.fromXml(doc);
-              _allXmlList.value.add(xml);
-              currentXmlList.value = List.from(_allXmlList.value);
-            }
+          if (file.bytes != null) {
+            fileContent = String.fromCharCodes(file.bytes!);
+          } else if (file.path != null) {
+            fileContent = await File(file.path!).readAsString();
+          } else {
+            return;
           }
-        },
-      );
+
+          final doc = XmlDocument.parse(fileContent);
+          XMLModel xml = XMLModel.fromXml(doc);
+
+          _allXmlList.value.add(xml);
+          currentXmlList.value = List.from(_allXmlList.value);
+        }
+      });
     } catch (e) {
       print("Error selecting files: $e");
-      return;
     }
   }
 
@@ -277,5 +284,20 @@ class HomeController extends GetxController {
     Get.closeAllSnackbars();
     Clipboard.setData(ClipboardData(text: text ?? ''));
     Get.snackbar('Texto copiado com sucesso!', text);
+  }
+
+  Future sendToFirebase() async {
+    isSentToCloudLoading.value = true;
+    Get.closeAllSnackbars();
+
+    if (currentXmlList.value.isEmpty) {
+      Get.snackbar('Nenhum arquivo lido para ser enviado', 'Faça a leitura de alguns arquivos para enviarmos a nuvem');
+      isSentToCloudLoading.value = false;
+      return;
+    }
+
+    await _homeServices.sendFilesToFirestore(currentXmlList.value);
+    isSentToCloudLoading.value = false;
+    Get.snackbar('Arquivos enviados para a nuvem', 'Os dados dos arquivos lidos foram enviados com sucesso para a nuvem', backgroundColor: Colors.green, colorText: Get.theme.colorScheme.onPrimary);
   }
 }

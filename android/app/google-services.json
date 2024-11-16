@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "920570880842",
+    "project_id": "xml-validator-72a10",
+    "storage_bucket": "xml-validator-72a10.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:920570880842:android:eb5c15aeec2e34029c97b3",
+        "android_client_info": {
+          "package_name": "com.example.fiscal_validator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyARxEI4rsDILnV1jsMM4OWCNg8uuY3pueE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
